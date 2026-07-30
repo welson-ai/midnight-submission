@@ -89,7 +89,7 @@ const App: React.FC = () => {
               verticalAlign: 'middle',
             }}
           />
-          Privacy-preserving loans · Midnight Preprod · Ledger v8
+          Privacy-preserving loans · Midnight Preview · Ledger v8
         </Typography>
 
         <Typography
@@ -164,8 +164,8 @@ const App: React.FC = () => {
             >
               Midnight Lace
             </Link>{' '}
-            on <Box component="span" sx={{ color: tokens.ink, fontWeight: 500 }}>Preprod</Box>
-            , funded with tDUST
+            on <Box component="span" sx={{ color: tokens.ink, fontWeight: 500 }}>Preview</Box>
+            , funded with tNight
           </Typography>
         </Box>
       </Box>
@@ -289,7 +289,7 @@ const App: React.FC = () => {
           >
             Midnight
           </Link>
-          {' · '}Private by design · Preprod
+          {' · '}Private by design · Preview
         </Typography>
         <Typography
           sx={{

@@ -85,7 +85,7 @@ export const Header: React.FC = () => {
             </Box>
 
             <Box
-              title="This DApp only runs against Midnight Preprod"
+              title="This DApp only runs against Midnight Preview"
               sx={{
                 display: { xs: 'none', md: 'flex' },
                 alignItems: 'center',
@@ -121,7 +121,7 @@ export const Header: React.FC = () => {
                   letterSpacing: '0.04em',
                 }}
               >
-                Preprod
+                Preview
               </Typography>
             </Box>
           </Box>

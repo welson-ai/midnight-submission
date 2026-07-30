@@ -103,7 +103,7 @@ export const LaceGate: React.FC<React.PropsWithChildren> = ({ children }) => {
       >
         This DApp signs every transaction through the Midnight Lace browser
         extension. We couldn't find it on <code>window.midnight</code> — install
-        it, set the network to <strong style={{ color: tokens.ink }}>Preprod</strong>,
+        it, set the network to <strong style={{ color: tokens.ink }}>Preview</strong>,
         and reload this page.
       </Typography>
 
@@ -141,8 +141,8 @@ export const LaceGate: React.FC<React.PropsWithChildren> = ({ children }) => {
           .
         </li>
         <li>Pin the extension and set up or import a wallet.</li>
-        <li>In Lace, switch the network to <strong style={{ color: tokens.ink }}>Preprod</strong>.</li>
-        <li>Fund it with tDUST from the Preprod faucet.</li>
+        <li>In Lace, switch the network to <strong style={{ color: tokens.ink }}>Preview</strong>.</li>
+        <li>Fund it with tNight from the Preview faucet.</li>
         <li>Reload this page.</li>
       </Box>
 
