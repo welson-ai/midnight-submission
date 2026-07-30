@@ -6,7 +6,7 @@
 
 | Requirement | Evidence |
 | :--- | :--- |
-| **Fully functional dApp** | [Live Demo](https://zk-verifier-zkloan-credit-scorer-ui-vert.vercel.app/) |
+| **Fully functional dApp** | [Live Demo](https://zk-verifier-zkloan-credit-scorer-ui-vert.vercel.app/) <br> **Preview Deployed Contract:** `0xff94d5482c0750ec6b5c7bea2f22c6f4a8f64d59828e4c7bf93ed91dec200841` <br> ![Contract Deployed](public/images/img3.png) |
 | **Minimum 3 tests passing** | ![Tests Passing](public/images/img1.png) |
 | **CI/CD pipeline passing** | ![CI/CD Pipeline](public/images/img2.png) |
 | **Approved idea** | **Age / Eligibility Gate** (ZKLoan Credit Scorer) |
