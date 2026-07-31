@@ -1,0 +1,114 @@
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '22'
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - name: Run audit
+        # Only fail on high vulnerabilities
+        run: npm audit --audit-level=high
+      - name: Lint all workspaces
+        run: npm run lint --workspaces
+
+  build-contract:
+    runs-on: ubuntu-latest
+    needs: lint-and-audit
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: midnightntwrk/setup-compact-action@836895c8fffbbea6bd986af2b17e8941ff29d1f8
+        with:
+          compact-version: '0.31.0'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '22'
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - name: Compile and test contract
+        working-directory: contract
+        run: |
+          npm run compact
+          npm run typecheck
+          npm run build
+          npm run test
+      - name: Upload contract artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-artifacts
+          path: |
+            contract/src/managed/
+            contract/dist/
+
+  build-api:
+    runs-on: ubuntu-latest
+    needs: build-contract
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: contract-artifacts
+          path: contract
+      - run: npm ci
+      - name: Build and test attestation API
+        working-directory: zkloan-credit-scorer-attestation-api
+        run: |
+          npm run build
+          npm run test
+
+  build-cli:
+    runs-on: ubuntu-latest
+    needs: build-contract
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: contract-artifacts
+          path: contract
+      - run: npm ci
+      - name: Compile and test CLI
+        working-directory: zkloan-credit-scorer-cli
+        run: |
+          npm run typecheck
+          npm run build
+          npm run test-api
+
+  build-ui:
+    runs-on: ubuntu-latest
+    needs: build-contract
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: contract-artifacts
+          path: contract
+      - run: npm ci
+      - name: Build UI
+        working-directory: zkloan-credit-scorer-ui
+        run: |
+          npm run typecheck
+          npm run build
