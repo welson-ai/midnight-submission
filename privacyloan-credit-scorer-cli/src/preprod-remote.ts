@@ -1,4 +1,4 @@
-// This file is part of midnightntwrk/example-counter.
+// This file is part of the ZKLoan Credit Scorer example.
 // Copyright (C) 2025 Midnight Foundation
 // SPDX-License-Identifier: Apache-2.0
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,9 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-<<<<<<< HEAD
-export * as ZKLoanCreditScorer from './managed/zkloan-credit-scorer/contract/index.js';
-=======
-export * as PrivacyLoanCreditScorer from './managed/privacyloan-credit-scorer/contract/index.js';
->>>>>>> privacyloan/main
-export * from './witnesses.js';
+import { createLogger } from './logger-utils.js';
+import { run } from './cli.js';
+import { PreprodConfig } from './config.js';
+
+const config = new PreprodConfig();
+const logger = await createLogger(config.logDir);
+await run(config, logger);

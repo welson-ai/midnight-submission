@@ -13,9 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-<<<<<<< HEAD
-export * as ZKLoanCreditScorer from './managed/zkloan-credit-scorer/contract/index.js';
-=======
-export * as PrivacyLoanCreditScorer from './managed/privacyloan-credit-scorer/contract/index.js';
->>>>>>> privacyloan/main
-export * from './witnesses.js';
+import protobuf from 'protobufjs';
+import Long from 'long';
+
+protobuf.util.Long = Long;
+protobuf.configure();

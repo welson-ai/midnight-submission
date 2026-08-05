@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # ZKLoan Credit Scorer
+=======
+# PrivacyLoan Credit Scorer
+>>>>>>> privacyloan/main
 
 **A privacy-preserving credit scoring and loan application system built on Midnight Network**
 
@@ -6,7 +10,12 @@
 
 | Requirement | Evidence |
 | :--- | :--- |
+<<<<<<< HEAD
 | **Fully functional dApp** | [Live Demo](https://zk-verifier-zkloan-credit-scorer-ui-vert.vercel.app/) |
+=======
+| **Demo Link** | [Live Demo](https://zk-verifier-zkloan-credit-scorer-ui-vert.vercel.app/) |
+| **Live Link** | [Live App](https://privacyloan-credit-scorer-ui.vercel.app/) |
+>>>>>>> privacyloan/main
 | **Contract Deployed (Preview)** | Address: `0xff94d5482c0750ec6b5c7bea2f22c6f4a8f64d59828e4c7bf93ed91dec200841` <br><br> ![Contract Deployed](public/images/img3.jpeg) |
 | **Minimum 3 tests passing** | ![Tests Passing](public/images/img1.png) |
 | **CI/CD pipeline passing** | ![CI/CD Pipeline](public/images/img2.png) |
@@ -20,9 +29,15 @@
 
 Our application fits the **Age / Eligibility Gate** category. 
 
+<<<<<<< HEAD
 By utilizing Midnight’s zero-knowledge circuits, the **ZKLoan Credit Scorer** allows applicants to prove they meet specific creditworthiness thresholds (e.g., "Score ≥ 700") without ever revealing their actual credit score, income, or employment history to the lending institution. This provides a privacy-preserving "Eligibility Gate" for financial services, where sensitive data remains local to the user, and only the proof of eligibility is verified on the public ledger.
 
 The ZKLoan Credit Scorer is a decentralized application that revolutionizes the traditional credit evaluation process by leveraging zero-knowledge proofs to protect user privacy. In conventional financial systems, loan applicants must disclose sensitive personal information (credit scores, income, employment history) to lending institutions, creating significant data security risks and privacy concerns. This DApp demonstrates how Midnight's unique architecture enables confidential financial decision-making without exposing sensitive data on a public ledger. Users can prove their creditworthiness and receive loan approvals while keeping their financial profile completely private, addressing the fundamental privacy challenges in traditional lending while maintaining the integrity and transparency of blockchain-based transactions.
+=======
+By utilizing Midnight’s zero-knowledge circuits, the **PrivacyLoan Credit Scorer** allows applicants to prove they meet specific creditworthiness thresholds (e.g., "Score ≥ 700") without ever revealing their actual credit score, income, or employment history to the lending institution. This provides a privacy-preserving "Eligibility Gate" for financial services, where sensitive data remains local to the user, and only the proof of eligibility is verified on the public ledger.
+
+The PrivacyLoan Credit Scorer is a decentralized application that revolutionizes the traditional credit evaluation process by leveraging zero-knowledge proofs to protect user privacy. In conventional financial systems, loan applicants must disclose sensitive personal information (credit scores, income, employment history) to lending institutions, creating significant data security risks and privacy concerns. This DApp demonstrates how Midnight's unique architecture enables confidential financial decision-making without exposing sensitive data on a public ledger. Users can prove their creditworthiness and receive loan approvals while keeping their financial profile completely private, addressing the fundamental privacy challenges in traditional lending while maintaining the integrity and transparency of blockchain-based transactions.
+>>>>>>> privacyloan/main
 
 ---
 
@@ -53,7 +68,11 @@ The connection between these two worlds is established through zero-knowledge pr
 3. **Public Verification**: On-chain components verify these proofs without seeing the underlying private data
 4. **State Update**: Only the non-sensitive results are recorded on the public ledger
 
+<<<<<<< HEAD
 ### In the ZKLoan Credit Scorer
+=======
+# In the PrivacyLoan Credit Scorer
+>>>>>>> privacyloan/main
 
 **Private Witness Data:**
 - `Applicant` struct containing creditScore, monthlyIncome, monthsAsCustomer
@@ -71,6 +90,7 @@ The connection between these two worlds is established through zero-knowledge pr
 ---
 
 ## Project Structure
+<<<<<<< HEAD
 
 ```
 zkloan-credit-scorer/
@@ -129,6 +149,68 @@ zkloan-credit-scorer/
 │   └── package.json
 ├── package.json                          # Root package (monorepo config)
 ├── tsconfig.json                         # TypeScript configuration
+=======
+   74	
+   75	```
+   76	privacyloan-credit-scorer/
+   77	├── contract/                              # Compact smart contract
+   78	│   ├── src/
+   79	│   │   ├── privacyloan-credit-scorer.compact  # Main contract logic
+   80	│   │   ├── schnorr.compact               # Schnorr signature verification
+   81	│   │   ├── witnesses.ts                  # TypeScript witness implementations
+   82	│   │   ├── index.ts                      # Contract entry point
+   83	│   │   ├── test/                         # Contract test suite
+   84	│   │   │   └── privacyloan-credit-scorer.test.ts
+   85	│   │   └── managed/                      # Generated Compact artifacts
+   86	│   │       └── privacyloan-credit-scorer/
+   87	│   │           ├── compiler/             # Compiler output
+   88	│   │           ├── contract/            # JavaScript bindings
+   89	│   │           ├── keys/                 # Prover/verifier keys
+   90	│   │           └── zkir/                 # ZK intermediate representation
+   91	│   ├── package.json
+   92	│   └── tsconfig.json
+   93	├── privacyloan-credit-scorer-cli/              # Command-line interface
+   94	│   ├── src/
+   95	│   │   ├── api.ts                        # Contract deployment & interaction
+   96	│   │   ├── cli.ts                        # Interactive CLI menu
+   97	│   │   ├── config.ts                     # Network configurations
+   98	│   │   ├── common-types.ts               # Shared type definitions
+   99	│   │   ├── standalone.ts                 # Local network entry point
+  100	│   │   ├── preprod-remote.ts             # Preprod network entry point
+  101	│   │   └── wallet.ts                     # Wallet management
+  102	│   ├── standalone.yml                    # Docker Compose for local network
+  103	│   ├── .env.example                     # Environment variables template
+  104	│   ├── .env                             # User configuration
+  105	│   └── package.json
+  106	├── privacyloan-credit-scorer-ui/               # React frontend
+  107	│   ├── src/
+  108	│   │   ├── components/                   # UI components
+  109	│   │   │   ├── ContractConnector.tsx
+  110	│   │   │   ├── LoanForm.tsx
+  111	│   │   │   ├── LoanList.tsx
+  112	│   │   │   └── AdminPanel.tsx
+  113	│   │   ├── contexts/                     # React context
+  114	│   │   │   └── PrivacyLoanContext.tsx
+  115	│   │   ├── utils/                        # Utility functions
+  116	│   │   ├── App.tsx
+  117	│   │   └── main.tsx
+  118	│   ├── public/
+  119	│   │   ├── keys/                         # Prover keys (copied during build)
+  120	│   │   └── zkir/                         # ZK IR files (copied during build)
+  121	│   └── package.json
+  122	├── privacyloan-credit-scorer-attestation-api/  # Attestation signing service
+  123	│   ├── src/
+  124	│   │   ├── index.ts                      # Entry point
+  125	│   │   ├── server.ts                     # Restify routes
+  126	│   │   ├── signing.ts                    # Schnorr signing logic
+  127	│   │   └── types.ts                      # Request/response types
+  128	│   ├── test/
+  129	│   └── package.json
+  130	├── package.json                          # Root package (monorepo config)
+  131	├── tsconfig.json                         # TypeScript configuration
+  132	└── README.md
+  133	```
+>>>>>>> privacyloan/main
 └── README.md
 ```
 
@@ -137,7 +219,11 @@ zkloan-credit-scorer/
 ## Privacy Model
 
 ### What an observer can and cannot learn
+<<<<<<< HEAD
 By leveraging Midnight's privacy-preserving architecture, the ZKLoan Credit Scorer provides clear boundaries regarding data visibility:
+=======
+By leveraging Midnight's privacy-preserving architecture, the PrivacyLoan Credit Scorer provides clear boundaries regarding data visibility:
+>>>>>>> privacyloan/main
 
 | Data Point | Observer Learns | Privacy Mechanism |
 | :--- | :--- | :--- |

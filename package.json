@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "zkloan-credit-scorer",
+=======
+  "name": "privacyloan-credit-scorer",
+>>>>>>> privacyloan/main
   "version": "3.0.0",
   "private": true,
   "type": "module",
@@ -7,10 +11,17 @@
     "node": ">=22.0.0"
   },
   "workspaces": [
+<<<<<<< HEAD
     "zkloan-credit-scorer-cli",
     "zkloan-credit-scorer-ui",
     "contract",
     "zkloan-credit-scorer-attestation-api"
+=======
+    "privacyloan-credit-scorer-cli",
+    "privacyloan-credit-scorer-ui",
+    "contract",
+    "privacyloan-credit-scorer-attestation-api"
+>>>>>>> privacyloan/main
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -13,7 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+<<<<<<< HEAD
 import { Ledger } from './managed/zkloan-credit-scorer/contract/index.js';
+=======
+import { Ledger } from './managed/privacyloan-credit-scorer/contract/index.js';
+>>>>>>> privacyloan/main
 import { WitnessContext } from '@midnight-ntwrk/midnight-js-protocol/compact-runtime';
 
 export type SchnorrSignature = {
@@ -29,7 +33,11 @@ export type SchnorrSignature = {
 // Whoever's `deriveAdminPublicKey(userSecret)` was pinned into `contractAdmin`
 // at deploy time holds the admin role; everyone else fails the equality
 // assertion inside the proof.
+<<<<<<< HEAD
 export type ZKLoanCreditScorerPrivateState = {
+=======
+export type PrivacyLoanCreditScorerPrivateState = {
+>>>>>>> privacyloan/main
   creditScore: bigint;
   monthlyIncome: bigint;
   monthsAsCustomer: bigint;
@@ -43,8 +51,13 @@ const TWO_248 = 4523128485832663883733241601901871400518358776001584532791311875
 export const witnesses = {
   getAttestedScoringWitness: ({
     privateState,
+<<<<<<< HEAD
   }: WitnessContext<Ledger, ZKLoanCreditScorerPrivateState>): [
     ZKLoanCreditScorerPrivateState,
+=======
+  }: WitnessContext<Ledger, PrivacyLoanCreditScorerPrivateState>): [
+    PrivacyLoanCreditScorerPrivateState,
+>>>>>>> privacyloan/main
     [{ creditScore: bigint; monthlyIncome: bigint; monthsAsCustomer: bigint }, SchnorrSignature, bigint],
   ] => [
     privateState,
@@ -60,9 +73,15 @@ export const witnesses = {
   ],
 
   getSchnorrReduction: (
+<<<<<<< HEAD
     { privateState }: WitnessContext<Ledger, ZKLoanCreditScorerPrivateState>,
     challengeHash: bigint,
   ): [ZKLoanCreditScorerPrivateState, [bigint, bigint]] => {
+=======
+    { privateState }: WitnessContext<Ledger, PrivacyLoanCreditScorerPrivateState>,
+    challengeHash: bigint,
+  ): [PrivacyLoanCreditScorerPrivateState, [bigint, bigint]] => {
+>>>>>>> privacyloan/main
     const q = challengeHash / TWO_248;
     const r = challengeHash % TWO_248;
     return [privateState, [q, r]];
@@ -70,7 +89,11 @@ export const witnesses = {
 
   getUserSecret: ({
     privateState,
+<<<<<<< HEAD
   }: WitnessContext<Ledger, ZKLoanCreditScorerPrivateState>): [ZKLoanCreditScorerPrivateState, Uint8Array] => {
+=======
+  }: WitnessContext<Ledger, PrivacyLoanCreditScorerPrivateState>): [PrivacyLoanCreditScorerPrivateState, Uint8Array] => {
+>>>>>>> privacyloan/main
     if (!privateState.userSecretKey || privateState.userSecretKey.length !== 32) {
       throw new Error('getUserSecret: userSecretKey is missing or wrong length');
     }

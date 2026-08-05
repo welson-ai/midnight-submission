@@ -1,0 +1,52 @@
+{
+  "name": "privacyloan-credit-scorer-ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run copy-contract-keys && vite --mode preprod",
+    "build": "cd ../contract && npm run build && cd ../privacyloan-credit-scorer-ui && npm run copy-contract-keys && tsc && vite build --mode preview",
+    "preview-build": "vite preview",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "copy-contract-keys": "mkdir -p ./public/keys && mkdir -p ./public/zkir && (cp -r ../contract/src/managed/privacyloan-credit-scorer/keys/* ./public/keys 2>/dev/null || cp -r ../contract/dist/managed/privacyloan-credit-scorer/keys/* ./public/keys) && (cp -r ../contract/src/managed/privacyloan-credit-scorer/zkir/* ./public/zkir 2>/dev/null || cp -r ../contract/dist/managed/privacyloan-credit-scorer/zkir/* ./public/zkir)"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@midnight-ntwrk/compact-runtime": "^0.16.0",
+    "@midnight-ntwrk/dapp-connector-api": "4.0.1",
+    "@midnight-ntwrk/midnight-js-contracts": "4.1.1",
+    "@midnight-ntwrk/midnight-js-fetch-zk-config-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-http-client-proof-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-level-private-state-provider": "4.1.1",
+    "@midnight-ntwrk/midnight-js-network-id": "4.1.1",
+    "@midnight-ntwrk/midnight-js-protocol": "4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "4.1.1",
+    "@midnight-ntwrk/wallet-sdk-address-format": "3.1.2",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/material": "^7.3.6",
+    "buffer": "^6.0.3",
+    "pino": "^10.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.3",
+    "rxjs": "^7.8.1",
+    "semver": "^7.7.2",
+    "privacyloan-credit-scorer-contract": "file:../contract"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@rollup/plugin-inject": "^5.0.5",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.3",
+    "@types/semver": "^7.7.0",
+    "@vitejs/plugin-react": "^5.1.2",
+    "node-stdlib-browser": "^1.3.1",
+    "stream-browserify": "^3.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.5",
+    "vite-plugin-node-polyfills": "^0.24.0",
+    "vite-plugin-top-level-await": "^1.5.0",
+    "vite-plugin-wasm": "^3.4.1"
+  }
+}

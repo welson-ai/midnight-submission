@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "zkloan-credit-scorer-contract",
+=======
+  "name": "privacyloan-credit-scorer-contract",
+>>>>>>> privacyloan/main
   "version": "0.1.0",
   "author": "IOG",
   "private": true,
@@ -14,6 +18,7 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
+<<<<<<< HEAD
     "./managed/zkloan-credit-scorer/contract": {
       "types": "./dist/managed/zkloan-credit-scorer/contract/index.d.ts",
       "import": "./dist/managed/zkloan-credit-scorer/contract/index.js",
@@ -25,6 +30,19 @@
     "test": "vitest run",
     "test:compile": "npm run compact && vitest run",
     "build": "rm -rf dist && tsc --project tsconfig.build.json && cp -Rf ./src/managed ./dist/managed && cp ./src/zkloan-credit-scorer.compact ./src/schnorr.compact ./dist",
+=======
+    "./managed/privacyloan-credit-scorer/contract": {
+      "types": "./dist/managed/privacyloan-credit-scorer/contract/index.d.ts",
+      "import": "./dist/managed/privacyloan-credit-scorer/contract/index.js",
+      "default": "./dist/managed/privacyloan-credit-scorer/contract/index.js"
+    }
+  },
+  "scripts": {
+    "compact": "compact compile src/privacyloan-credit-scorer.compact src/managed/privacyloan-credit-scorer",
+    "test": "vitest run",
+    "test:compile": "npm run compact && vitest run",
+    "build": "rm -rf dist && tsc --project tsconfig.build.json && cp -Rf ./src/managed ./dist/managed && cp ./src/privacyloan-credit-scorer.compact ./src/schnorr.compact ./dist",
+>>>>>>> privacyloan/main
     "lint": "eslint src",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   }
