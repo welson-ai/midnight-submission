@@ -1,29 +1,22 @@
-# ZKLoan Credit Scorer - Product Proposal
+# PrivacyLoan Credit Scorer: Proposal
 
-## 1. Product & Users
-The **ZKLoan Credit Scorer** is a decentralized lending privacy-preservation tool. It allows loan applicants to prove creditworthiness (e.g., meeting a specific score or income threshold) without revealing their raw financial data.
-
-*   **Users**: 
-    *   **Applicants**: Individuals wanting to secure loans while maintaining total privacy over their credit history and income data.
-    *   **Lending Institutions**: Lenders who need to verify eligibility without incurring the liability of holding sensitive personal data.
-    *   **Attestation Providers**: Trusted entities that sign credit data to enable ZK proof generation.
+## 1. Product & Target Users
+PrivacyLoan Credit Scorer is a ZK-powered lending DApp designed for individuals seeking financial services without compromising sensitive personal data. Our target users are privacy-conscious borrowers who want to prove their creditworthiness (credit score, income, tenure) to lenders without disclosing their raw financial history. By using zero-knowledge proofs, we gate financial access while preserving data sovereignty.
 
 ## 2. Why Midnight?
-Traditional blockchains are inherently public, making them unsuitable for sensitive financial data. Midnight's **dual-state architecture** is uniquely suited for this because:
-*   **Zero-Knowledge Circuits (Compact)**: Enables us to define complex credit eligibility logic that proves a condition is met (e.g., `score >= 700`) without the ledger ever knowing the actual score.
-*   **Privacy by Default**: Midnight requires explicit disclosure, preventing accidental leakage of witness data.
-*   **Identity Unlinkability**: Our usage of PIN-derived, domain-separated public keys ensures that users' borrowing patterns are not linkable to their real-world wallets, a critical feature for financial privacy.
+Midnight is the only blockchain that bridges public ledger transparency with private, ZK-backed computation out of the box. Specifically, we utilize:
+- **Compact Language**: Allows us to write formal ZK circuits that verify complex eligibility thresholds without revealing private inputs.
+- **Dual-State Architecture**: Enables us to keep sensitive data (credit score/income) in the local Private Witness state, only anchoring the eligibility proof on the Public Ledger.
+- **Privacy-by-Default**: The `disclose()` mechanism forces us to explicitly define what data enters the public domain, preventing accidental leaks.
 
 ## 3. Data Model
-*   **Public State (Ledger)**: Stores non-sensitive results such as `LoanStatus` (Approved/Proposed/Rejected), `authorizedAmount`, a `blacklist` of malicious user public keys, and a registry of trusted `providers`.
-*   **Private Witness State**: Stores sensitive `Applicant` details (creditScore, monthlyIncome, monthsAsCustomer), the user's `userSecretKey`, and secret `PIN` used for identity rotation.
-*   **Disclosure**: We use `disclose()` strategically, wrapping only the minimal necessary values (e.g., status, authorized amount) before storage on the ledger, ensuring all raw metrics remain private.
+- **Public Ledger**: Stores only non-sensitive outcomes: `LoanApplication` status, `authorizedAmount`, `blacklist` status, and the `AttestationProviderRegistry`.
+- **Private Witness**: The "source of truth" for sensitive data. It holds the `Applicant` profile (raw score, income, tenure), the user's secret PIN, and private signing keys.
+- **Disclosure**: We use explicit `disclose()` calls for the final `LoanStatus` and `authorizedAmount`. All intermediary credit scoring logic is proven inside the ZK circuit, ensuring the raw numbers never appear on-chain.
 
-## 4. Scope Feasibility (Level 6)
-The current MVP provides the necessary foundation for a Mainnet release by Level 6:
-*   **Current State**: Full contract logic, ZK circuit attestation, and CLI/UI interfaces are functional and tested.
-*   **Mainnet Path**:
-    *   **Phase 1 (Audit)**: Formal security audit of Compact circuits.
-    *   **Phase 2 (Provider Expansion)**: Integrating with decentralized oracle services for real-world attestation data.
-    *   **Phase 3 (UX Optimization)**: Full integration with Lace browser extension for production-ready, frictionless transaction signing.
-    *   **Scalability**: Current batch-migration for PIN changes demonstrates robustness for managing user accounts at scale.
+## 4. Mainnet Scope (Level 6)
+By Level 6, PrivacyLoan will reach production readiness on Mainnet through:
+1. **Security Hardening**: Full third-party audit of our Compact circuits and Schnorr-based attestation verification.
+2. **Attestation Network**: Decentralizing the attestation provider registry to support multiple trusted KYC/Credit bureaus.
+3. **User Experience**: Migrating identity management from transient in-memory state to encrypted browser-local storage for persistent loan history.
+4. **Scale**: Optimizing proof generation servers to support high-concurrency requests and ensuring cost-effective transaction fees through batch verification.
